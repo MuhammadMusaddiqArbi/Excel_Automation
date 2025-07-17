@@ -4,10 +4,13 @@ from openpyxl.chart import BarChart, LineChart, PieChart, Reference
 
 class ExcelAutomation:
     wb = None
+
+    @staticmethod
     def create_workbook(filename):
         ExcelAutomation.wb = Workbook()
         print(f"Workbook created {filename}.")
 
+    @staticmethod
     def save_workbook(filename):
         if ExcelAutomation.wb is not None:
             ExcelAutomation.wb.save(filename)
@@ -15,6 +18,7 @@ class ExcelAutomation:
         else:
             print("No workbook to save. Please create a workbook first.")
 
+    @staticmethod
     def load_workbook(filename):
         try:
             ExcelAutomation.wb = load_workbook(filename)
@@ -24,6 +28,7 @@ class ExcelAutomation:
         except Exception as e:
             print(f"An error occurred while loading the workbook: {e}")
 
+    @staticmethod
     def add_sheet(sheet_name):
         if ExcelAutomation.wb is not None:
             ExcelAutomation.wb.create_sheet(title=sheet_name)
@@ -31,6 +36,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def delete_sheet(sheet_name):
         if ExcelAutomation.wb is not None:
             ExcelAutomation.wb.remove(ExcelAutomation.wb[sheet_name])
@@ -38,6 +44,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def list_sheets():
         if ExcelAutomation.wb is not None:
             sheets = ExcelAutomation.wb.sheetnames
@@ -45,6 +52,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def write_data(sheet_name, cell, data):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -56,6 +64,7 @@ class ExcelAutomation:
         else: 
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def read_data(sheet_name, cell):
         if ExcelAutomation.wb is not None:
             sheet = ExcelAutomation.wb[sheet_name]
@@ -64,6 +73,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def close_workbook():
         if ExcelAutomation.wb is not None:
             ExcelAutomation.wb.close()
@@ -71,6 +81,7 @@ class ExcelAutomation:
         else:
             print("No workbook to close. Please create or load a workbook first.")    
 
+    @staticmethod
     def create_chart(sheet_name, chart_type, data_range, title):
         if ExcelAutomation.wb is not None:
             sheet = ExcelAutomation.wb[sheet_name]
@@ -89,11 +100,13 @@ class ExcelAutomation:
             chart.title = title
             sheet.add_chart(chart, "E5")
 
+    @staticmethod
     def save_chart(sheet_name, chart_type, data_range, title, filename):
         ExcelAutomation.create_chart(sheet_name, chart_type, data_range, title)
         ExcelAutomation.save_workbook(filename)
         print(f"Chart saved in {filename}.")
 
+    @staticmethod
     def read_chart(sheet_name, chart_type):
         if ExcelAutomation.wb is not None:
             sheet = ExcelAutomation.wb[sheet_name]
@@ -106,6 +119,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def delete_chart(sheet_name, chart_type):
         if ExcelAutomation.wb is not None:
             sheet = ExcelAutomation.wb[sheet_name]
@@ -119,6 +133,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def merge_cells(sheet_name, start_cell, end_cell):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -130,6 +145,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def unmerge_cells(sheet_name, start_cell, end_cell):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -141,6 +157,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def freeze_panes(sheet_name, cell):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -152,6 +169,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def unfreeze_panes(sheet_name):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -163,6 +181,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_column_width(sheet_name, column, width):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -174,6 +193,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_row_height(sheet_name, row, height):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -185,6 +205,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def format_cell(sheet_name, cell, font=None, fill=None, border=None, alignment=None):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -204,6 +225,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_style(sheet_name, cell, style):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -216,6 +238,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_comment(sheet_name, cell, comment):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -228,6 +251,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.") 
 
+    @staticmethod
     def set_cell_validation(sheet_name, cell, validation):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -240,6 +264,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_hyperlink(sheet_name, cell, url):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -252,6 +277,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_protection(sheet_name, cell, locked=True):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -264,6 +290,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_number_format(sheet_name, cell, number_format):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -276,6 +303,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_formula(sheet_name, cell, formula):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -288,6 +316,7 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
 
+    @staticmethod
     def set_cell_style(sheet_name, cell, style):
         if ExcelAutomation.wb is not None:
             if sheet_name not in ExcelAutomation.wb.sheetnames:
@@ -300,7 +329,35 @@ class ExcelAutomation:
         else:
             print("No workbook available. Please create or load a workbook first.")
                                                                                                          
+    @staticmethod
+    def import_csv_to_sheet(csv_file, sheet_name):
+        if ExcelAutomation.wb is None:
+            print("No workbook. Please create or load one.")
+            return
+        sheet = ExcelAutomation.wb.create_sheet(title=sheet_name)
+        with open(csv_file, 'r', newline='') as f:
+            reader = csv.reader(f)
+            for row_idx, row in enumerate(reader, 1):
+                for col_idx, value in enumerate(row, 1):
+                    sheet.cell(row=row_idx, column=col_idx, value=value)
+        print(f"CSV data imported into sheet '{sheet_name}'.")
 
+    @staticmethod
+    def export_sheet_to_csv(sheet_name, csv_file):
+        if ExcelAutomation.wb is None:
+            print("No workbook. Please create or load one.")
+            return
+        if sheet_name not in ExcelAutomation.wb.sheetnames:
+            print(f"Sheet '{sheet_name}' does not exist.")
+            return
+        sheet = ExcelAutomation.wb[sheet_name]
+        with open(csv_file, 'w', newline='') as f:
+            writer = csv.writer(f)
+            for row in sheet.iter_rows(values_only=True):
+                writer.writerow(row)
+        print(f"Sheet '{sheet_name}' exported to CSV file '{csv_file}'.")
+
+    @staticmethod
     def continuee():
         print("Do You want to continue? (Y/N)")
         choice = input().strip().upper()
@@ -314,7 +371,7 @@ class ExcelAutomation:
             ExcelAutomation.continuee()    
 
 
-
+@staticmethod
 def main():
     print("Excel Automation Script")
     print("1. Create Workbook")
@@ -345,9 +402,11 @@ def main():
     print("26. Set Cell Number Format")
     print("27. Set Cell Formula")
     print("28. Set Cell Style")
-    print("29. Exit")
+    print("29. Import CSV to Sheet")
+    print("30. Export Sheet to CSV")
+    print("31. Exit")
     choice = input("Enter your choice: ")
-    while choice != '29':
+    while choice != '31':
         if choice == '1':
             filename = input("Enter filename to create: ")
             ExcelAutomation.create_workbook(filename)
@@ -501,8 +560,18 @@ def main():
             cell = input("Enter cell (e.g., A1): ")
             style = input("Enter style (e.g., currency): ")
             ExcelAutomation.set_cell_style(sheet_name, cell, style)
-            ExcelAutomation.continuee()                                                      
+            ExcelAutomation.continuee()    
         elif choice == '29':
+            csv_file = input("Enter CSV file path to import: ")
+            sheet_name = input("Enter sheet name to import CSV into: ")
+            ExcelAutomation.import_csv_to_sheet(csv_file, sheet_name)
+            ExcelAutomation.continuee()
+        elif choice == '30':
+            sheet_name = input("Enter sheet name to export to CSV: ")
+            csv_file = input("Enter CSV file path to save: ")
+            ExcelAutomation.export_sheet_to_csv(sheet_name, csv_file)
+            ExcelAutomation.continuee()                                                  
+        elif choice == '31':
             print("Exiting the script.")
             return 0
         else:
